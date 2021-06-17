@@ -5,9 +5,12 @@ As an example of an app that would greatly benefit from OOP structure - ToDo App
 
 The flow of the app is pretty easy and can be easilty described using object names from the below pseudocode. Here is the sample user story that uses vocabulary from the model below. I presented here single User Story (not too structured though) just for the demonstartion purpose.
 
-US-01: User sign up
+*US-01: User sign up*
+
 Condition: As a user of ToDo list app I want to create personal account. I open welcome page and follow "sign me up" link, which redirects me to sign up page which renders html form. After I fill all the fields on this form I clicks Sign Up button and if everything is fine with the input data I provided (i.e. username is not occupied, password is correct, email provided is fine) - app redirects me to the Dashboard page.
+
 Technical flow: 
+
 	1. Load page http://someurl/myapp/index.html which initiates the app by constructing Application object
 	2. If AuthenticationService.isLoggedIn() returns false create an instance of WelcomePage with init() method and load page with the overloaded getContent() method which renders navigation pane into "root" div of index page
 	3. If AuthenticationService.isLoggedIn() returns true create an instance of DashboardPage with init() method and load page with the overloaded getContent() method which renders list of ToDoLists into "root" div of index page

@@ -17,18 +17,18 @@ Technical flow:
 
 Here is the pseudocode for the project I did earliner in the course, my source code is a bit different - below pseudocode makes much more sense. If I would write it again I think I would stick with that approach below:
 
-User(email, password, firstname, lastname) constructor
-	email: user email
-	password: user password hash
-	firstname: user firstname
-	lastname: user lastname
+	User(email, password, firstname, lastname) constructor
+		email: user email
+		password: user password hash
+		firstname: user firstname
+		lastname: user lastname
 
-ToDoList(id, listName, todos[], ownerEmail) constructor
-	this.id: unique list identifier
-	this.listName: name of the list
-	this.todos: an array of ToDoItem objects
-	this.ownerEmail: text - user email address
-	this.updateToDoList(todoListInfo): updates todo object 
+	ToDoList(id, listName, todos[], ownerEmail) constructor
+		this.id: unique list identifier
+		this.listName: name of the list
+		this.todos: an array of ToDoItem objects
+		this.ownerEmail: text - user email address
+		this.updateToDoList(todoListInfo): updates todo object 
 
 ToDoItem(id, name, status) constructor
 	this.id: unique number

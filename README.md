@@ -30,95 +30,95 @@ Here is the pseudocode for the project I did earliner in the course, my source c
 		this.ownerEmail: text - user email address
 		this.updateToDoList(todoListInfo): updates todo object 
 
-ToDoItem(id, name, status) constructor
-	this.id: unique number
-	this.name: text
-	this.status: text
-	this.updateStatus(status)
-	this.completeToDo()
-	this.cancelToDo()
-	this.reopenToDo()	
+	ToDoItem(id, name, status) constructor
+		this.id: unique number
+		this.name: text
+		this.status: text
+		this.updateStatus(status)
+		this.completeToDo()
+		this.cancelToDo()
+		this.reopenToDo()	
 
-StoreService() constructor
-	this.addLoggedUserEntry(user)
-	this.getLoggedUserEntry()
-	this.removeLoggedUserEntry(user)
+	StoreService() constructor
+		this.addLoggedUserEntry(user)
+		this.getLoggedUserEntry()
+		this.removeLoggedUserEntry(user)
 
-	this.setCurrentRequestParamsEntry(params)
-	this.getCurrentRequestParamsEntry()
-	this.removeCurrentRequestParamsEntry(params)
+		this.setCurrentRequestParamsEntry(params)
+		this.getCurrentRequestParamsEntry()
+		this.removeCurrentRequestParamsEntry(params)
 
-	this.addToDoListEntry(listName)
-	this.getToDoListEntry()
-	this.removeToDoListEntry(listName)
-	this.updateToDoListEntry(todolist)
+		this.addToDoListEntry(listName)
+		this.getToDoListEntry()
+		this.removeToDoListEntry(listName)
+		this.updateToDoListEntry(todolist)
 
-	this.getCurrentPageNameEntry()
-	this.setCurrentPageNameEntry(pageName)
-	this.removeCurrentPageEntry(pageName)
+		this.getCurrentPageNameEntry()
+		this.setCurrentPageNameEntry(pageName)
+		this.removeCurrentPageEntry(pageName)
 
-	this.addUserEntry(user)
-	this.getUserEntry(username)
-	this.removeUserEntry(user)
-	this.updateUser(user)
+		this.addUserEntry(user)
+		this.getUserEntry(username)
+		this.removeUserEntry(user)
+		this.updateUser(user)
 
-UsersService(storeService, authenticatorService) constructor
-	this.storeService: StoreService
-	this.authenicatorService: AuthenticationService
-	this.storeService: StoreService
-	this.createUser(user)
-	this.updateUser(user)
-	this.getUser()
+	UsersService(storeService, authenticatorService) constructor
+		this.storeService: StoreService
+		this.authenicatorService: AuthenticationService
+		this.storeService: StoreService
+		this.createUser(user)
+		this.updateUser(user)
+		this.getUser()
 
-ToDoListsService(storeService, authenticatorService) constructor
-	this.storeService: StoreService
-	this.authenicatorService: AuthenticationService
-	this.createToDoList()
-	this.updateToDoList()
-	this.getToDoList()
-	...
+	ToDoListsService(storeService, authenticatorService) constructor
+		this.storeService: StoreService
+		this.authenicatorService: AuthenticationService
+		this.createToDoList()
+		this.updateToDoList()
+		this.getToDoList()
+		...
 
-Application(storeService, authenicatorService, routerService, todoListService, usersService) constructor //reads data from the local storage and creates storeService, authenicatorService, routerService objects
-	this.storeService: StoreService
-	this.authenticatorService: AuthenticationService
-	this.routerService: RouterService
-	this.todoListService: ToDoListsService
-	this.usersService: UsersService
-		
-HttpRouter(authenticatorService) constructor
-	authenicatorService: AuthenticationService
-	
-HttpRouter
-	getRequestParams(): returns [] of all the request params
-	navigateTo(pageName): checks routing rules and loads *Page if there is such a route
-	
-AuthenticationService(storeService) constructor
-	this.authenticate()
-	this.logout()
-	this.isLoggedIn(): returns true/false
-	this.getLoggedInUser(): returns User object
+	Application(storeService, authenicatorService, routerService, todoListService, usersService) constructor //reads data from the local storage and creates storeService, authenicatorService, routerService objects
+		this.storeService: StoreService
+		this.authenticatorService: AuthenticationService
+		this.routerService: RouterService
+		this.todoListService: ToDoListsService
+		this.usersService: UsersService
 
-PageFactory
-	this.getInstance(pageName, applicationService): *Page
+	HttpRouter(authenticatorService) constructor
+		authenicatorService: AuthenticationService
 
-Page(application) constructor: //since all pages need a construtor that takes one argument "applicationService", let's make it available for all *Page objects
-	this.application: Application
+	HttpRouter
+		getRequestParams(): returns [] of all the request params
+		navigateTo(pageName): checks routing rules and loads *Page if there is such a route
 
-Page.prototype: //prototype is needed here since we are 
-	this.getContent(): returns html block
-	this.getPageName(): return name of the page
-	this.init(): initalize the page, all the events and transitions
-	
-WelcomePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	AuthenticationService(storeService) constructor
+		this.authenticate()
+		this.logout()
+		this.isLoggedIn(): returns true/false
+		this.getLoggedInUser(): returns User object
 
-LoginPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	PageFactory
+		this.getInstance(pageName, applicationService): *Page
 
-SignUpPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	Page(application) constructor: //since all pages need a construtor that takes one argument "applicationService", let's make it available for all *Page objects
+		this.application: Application
 
-CreateToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	Page.prototype: //prototype is needed here since we are 
+		this.getContent(): returns html block
+		this.getPageName(): return name of the page
+		this.init(): initalize the page, all the events and transitions
 
-DashboardPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	WelcomePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
 
-ProfilePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	LoginPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
 
-ViewToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	SignUpPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	CreateToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	DashboardPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	ProfilePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	ViewToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()

@@ -1,0 +1,44 @@
+body {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    font-size: 15;
+}
+
+.formInput {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+input {
+    height: 35px;
+    padding-left: 10px;
+}
+
+button {
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submit {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    width: +8%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+label {
+    font-size: 15;
+}
+
+.main {
+    text-align: left;
+    width: fit-content;
+}
+
+#notification_area {
+    width: 100%;
+    margin: 10px;
+}

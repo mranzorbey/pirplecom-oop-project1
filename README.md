@@ -1,124 +1,129 @@
 # pirplecom-oop-project1
-To me objects are a pretty good way to structure data model of your app, give your team the same vocabulary. Depending on the instrument/programming language OOP also provides certain rules/guidelines to ease team's life. JS uses very lightwaight approach to OOP unlike Java or C#. No such things as interfaces, field access modifiers, inheritance rules etc. - which is good in its own way. What I do like about OOP in JS is that every container is an object which is in turn is a simple json - so passing jsons back and forth, parsing, defining needs less mappers/converters/parsers etc. It is hard to say which approach functional or event-driven requires OOP less, to me objects are equally good for any type of programming be it functional, event-driven or imperative or you name it. It depends on how you structure your app and the restrictions you have on environment, memory, performance requirements etc. In functional programming for example I once used objects to build rules around them to react on specific type of object creation/update/destrution and in event-driven app I would use objects to store event info and build a pipeline around. So, it is either I did not understand the question or I am not qualified to answer it :) I would appreciate it if can send me your answer to that question :)
+Objects are a pretty good way to structure your app's data model and give your team the same vocabulary. Depending on the instrument/programming language OOP also provides certain rules/guidelines to ease the team's life. JS uses a very lightweight approach to OOP, unlike Java or C#. No such things as interfaces, field access modifiers, inheritance rules, etc. - which is good in its own way. What I do like about OOP in JS is that every container is an object which is in turn is a simple JSON - so passing JSON back and forth, parsing, defining needs fewer mappers/converters/parsers, etc. It is hard to say which approach functional or event-driven requires OOP less, to me objects are equally good for most types of programming. To me, it depends more on how you structure your app and the restrictions you have on the environment, memory, and so forth. One can use objects in some app built with functional-oriented programming in mind to build rules that react on specific object creation/destruction/change and in an event-driven app one could use objects to store event info and build a pipeline to stream and data. So, it is either I did not understand the question or I am not qualified to answer it :) I would appreciate it if can send me your answer to that question :)
 
-As an example of an app that would greatly benefit from OOP structure - ToDo App. Below I presented a structure for that kind of app. Having a structure of that kind makes app really transparent to every developer who will support it later. It is also easy to think of object's functions and to group them under the same types of objects. It is also helps to write well structured tech docs.
+As an example of an app that would greatly benefit from OOP structure - ToDo App. Below I presented a structure for that kind of app. Having a structure of that kind makes the app really transparent to every developer. It is also easy to think of object's functions and to group them under the same types of objects and helps to write well-structured tech docs.
 
-The flow of the app is pretty easy and can be easilty described using object names from the below pseudocode. Here is the sample user story that uses vocabulary from the model below. I presented here single User Story (not too structured though) just for the demonstartion purpose.
+The flow of the app is pretty straightforward and can be easily described using object names from the below pseudocode. Here is the sample user story that uses vocabulary from the model below. I presented here a single User Story (not too structured though) just for the demonstration purpose.
 
-US-01: User sign up
-Condition: As a user of ToDo list app I want to create personal account. I open welcome page and follow "sign me up" link, which redirects me to sign up page which renders html form. After I fill all the fields on this form I clicks Sign Up button and if everything is fine with the input data I provided (i.e. username is not occupied, password is correct, email provided is fine) - app redirects me to the Dashboard page.
-Technical flow: 
-	1. Load page http://someurl/myapp/index.html which initiates the app by constructing Application object
-	2. If AuthenticationService.isLoggedIn() returns false create an instance of WelcomePage with init() method and load page with the overloaded getContent() method which renders navigation pane into "root" div of index page
-	3. If AuthenticationService.isLoggedIn() returns true create an instance of DashboardPage with init() method and load page with the overloaded getContent() method which renders list of ToDoLists into "root" div of index page
-	4. On the WelcomePage if user clicked on "sign me up" link create SignUpPage object and load page content with the overloaded getContent() method which renders a form into "root" div
-	5. On the SignUpPage if user clicked on Sign Up button create user with UserService.createUser() method and if successful route user to dashboard page by calling HttpRouter.navigateTo("DashboardPage")
-	6. If HttpRouter.navigateTo("DashboardPage") is called create object of DashboardPage and load page content with the overloaded getContent() method which renders a form into "root" div
+**US-01: User sign up**
 
-Here is the pseudocode for the project I did earliner in the course, my source code is a bit different - below pseudocode makes much more sense. If I would write it again I think I would stick with that approach below:
+_Condition:_ 
 
-User(email, password, firstname, lastname) constructor
-	email: user email
-	password: user password hash
-	firstname: user firstname
-	lastname: user lastname
+As a user of the ToDo list app, I want to create a personal account. I open the welcome page and follow the "sign me up" link, which redirects me to a sign-up page that renders an HTML form. After I fill all the fields on this form I click the Sign Up button and if everything is fine with the input data I provided (i.e. username is not occupied, the password is correct, email provided is fine) - the app redirects me to the Dashboard page.
 
-ToDoList(id, listName, todos[], ownerEmail) constructor
-	this.id: unique list identifier
-	this.listName: name of the list
-	this.todos: an array of ToDoItem objects
-	this.ownerEmail: text - user email address
-	this.updateToDoList(todoListInfo): updates todo object 
+_Technical flow:_
 
-ToDoItem(id, name, status) constructor
-	this.id: unique number
-	this.name: text
-	this.status: text
-	this.updateStatus(status)
-	this.completeToDo()
-	this.cancelToDo()
-	this.reopenToDo()	
+1. Load page http://someurl/myapp/index.html which initiates the app by constructing Application object
+2. If AuthenticationService.isLoggedIn() returns false create an instance of WelcomePage with init() method and load page with the overloaded getContent() method which renders navigation pane into "root" div of index page
+3. If AuthenticationService.isLoggedIn() returns true create an instance of DashboardPage with init() method and load page with the overloaded getContent() method which renders list of ToDoLists into "root" div of index page
+4. On the welcome page if the user clicked on the "sign me up" link creates SignUpPage object and load page content with the overloaded getContent() method which renders a form into the "root" div
+5. On the SignUpPage if user clicked on Sign Up button create user with UserService.createUser() method and if successful route user to dashboard page by calling HttpRouter.navigateTo("DashboardPage")
+6. If HttpRouter.navigateTo("DashboardPage") is called create object of DashboardPage and load page content with the overloaded getContent() method which renders a form into "root" div
 
-StoreService() constructor
-	this.addLoggedUserEntry(user)
-	this.getLoggedUserEntry()
-	this.removeLoggedUserEntry(user)
+Here is the pseudocode for the project I did earlier in the course, my source code is a bit different - below pseudocode makes much more sense. If I would write it again I think I would stick with that approach below:
 
-	this.setCurrentRequestParamsEntry(params)
-	this.getCurrentRequestParamsEntry()
-	this.removeCurrentRequestParamsEntry(params)
+	User(email, password, firstname, lastname) constructor
+		email: user email
+		password: user password hash
+		firstname: user firstname
+		lastname: user lastname
 
-	this.addToDoListEntry(listName)
-	this.getToDoListEntry()
-	this.removeToDoListEntry(listName)
-	this.updateToDoListEntry(todolist)
+	ToDoList(id, listName, todos[], ownerEmail) constructor
+		this.id: unique list identifier
+		this.listName: name of the list
+		this.todos: an array of ToDoItem objects
+		this.ownerEmail: text - user email address
+		this.updateToDoList(todoListInfo): updates todo object 
 
-	this.getCurrentPageNameEntry()
-	this.setCurrentPageNameEntry(pageName)
-	this.removeCurrentPageEntry(pageName)
+	ToDoItem(id, name, status) constructor
+		this.id: unique number
+		this.name: text
+		this.status: text
+		this.updateStatus(status)
+		this.completeToDo()
+		this.cancelToDo()
+		this.reopenToDo()	
 
-	this.addUserEntry(user)
-	this.getUserEntry(username)
-	this.removeUserEntry(user)
-	this.updateUser(user)
+	StoreService() constructor
+		this.addLoggedUserEntry(user)
+		this.getLoggedUserEntry()
+		this.removeLoggedUserEntry(user)
 
-UsersService(storeService, authenticatorService) constructor
-	this.storeService: StoreService
-	this.authenicatorService: AuthenticationService
-	this.storeService: StoreService
-	this.createUser(user)
-	this.updateUser(user)
-	this.getUser()
+		this.setCurrentRequestParamsEntry(params)
+		this.getCurrentRequestParamsEntry()
+		this.removeCurrentRequestParamsEntry(params)
 
-ToDoListsService(storeService, authenticatorService) constructor
-	this.storeService: StoreService
-	this.authenicatorService: AuthenticationService
-	this.createToDoList()
-	this.updateToDoList()
-	this.getToDoList()
-	...
+		this.addToDoListEntry(listName)
+		this.getToDoListEntry()
+		this.removeToDoListEntry(listName)
+		this.updateToDoListEntry(todolist)
 
-Application(storeService, authenicatorService, routerService, todoListService, usersService) constructor //reads data from the local storage and creates storeService, authenicatorService, routerService objects
-	this.storeService: StoreService
-	this.authenticatorService: AuthenticationService
-	this.routerService: RouterService
-	this.todoListService: ToDoListsService
-	this.usersService: UsersService
-		
-HttpRouter(authenticatorService) constructor
-	authenicatorService: AuthenticationService
-	
-HttpRouter
-	getRequestParams(): returns [] of all the request params
-	navigateTo(pageName): checks routing rules and loads *Page if there is such a route
-	
-AuthenticationService(storeService) constructor
-	this.authenticate()
-	this.logout()
-	this.isLoggedIn(): returns true/false
-	this.getLoggedInUser(): returns User object
+		this.getCurrentPageNameEntry()
+		this.setCurrentPageNameEntry(pageName)
+		this.removeCurrentPageEntry(pageName)
 
-PageFactory
-	this.getInstance(pageName, applicationService): *Page
+		this.addUserEntry(user)
+		this.getUserEntry(username)
+		this.removeUserEntry(user)
+		this.updateUser(user)
 
-Page(application) constructor: //since all pages need a construtor that takes one argument "applicationService", let's make it available for all *Page objects
-	this.application: Application
+	UsersService(storeService, authenticatorService) constructor
+		this.storeService: StoreService
+		this.authenicatorService: AuthenticationService
+		this.storeService: StoreService
+		this.createUser(user)
+		this.updateUser(user)
+		this.getUser()
 
-Page.prototype: //prototype is needed here since we are 
-	this.getContent(): returns html block
-	this.getPageName(): return name of the page
-	this.init(): initalize the page, all the events and transitions
-	
-WelcomePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	ToDoListsService(storeService, authenticatorService) constructor
+		this.storeService: StoreService
+		this.authenicatorService: AuthenticationService
+		this.createToDoList()
+		this.updateToDoList()
+		this.getToDoList()
+		...
 
-LoginPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	Application(storeService, authenicatorService, routerService, todoListService, usersService) constructor //reads data from the local storage and creates storeService, authenicatorService, routerService objects
+		this.storeService: StoreService
+		this.authenticatorService: AuthenticationService
+		this.routerService: RouterService
+		this.todoListService: ToDoListsService
+		this.usersService: UsersService
 
-SignUpPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	HttpRouter(authenticatorService) constructor
+		authenicatorService: AuthenticationService
 
-CreateToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	HttpRouter
+		getRequestParams(): returns [] of all the request params
+		navigateTo(pageName): checks routing rules and loads *Page if there is such a route
 
-DashboardPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	AuthenticationService(storeService) constructor
+		this.authenticate()
+		this.logout()
+		this.isLoggedIn(): returns true/false
+		this.getLoggedInUser(): returns User object
 
-ProfilePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	PageFactory
+		this.getInstance(pageName, applicationService): *Page
 
-ViewToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+	Page(application) constructor: //since all pages need a construtor that takes one argument "applicationService", let's make it available for all *Page objects
+		this.application: Application
+
+	Page.prototype: //prototype is needed here since we are 
+		this.getContent(): returns html block
+		this.getPageName(): return name of the page
+		this.init(): initalize the page, all the events and transitions
+
+	WelcomePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	LoginPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	SignUpPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	CreateToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	DashboardPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	ProfilePage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
+
+	ViewToDoListPage.prototype extends from Page.prototype and redefines getContent(), getPageName(), init()
